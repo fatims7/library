@@ -1,0 +1,268 @@
+:root {
+    --primary: rgb(219, 175, 79);
+    --bg: rgb(212, 202, 154);
+    --hover: rgb(197, 150, 68);
+    --font: rgb(100, 60, 15);
+}
+
+
+body {
+    font-family: 'Bitter', sans-serif;
+    background-color: var(--bg);
+    color: rgb(51, 45, 40);
+}
+
+.main {
+    min-height: 100vh;
+}
+
+.main .container {
+    min-height: 100vh;
+}
+
+.breadcrumb-item a {
+    text-decoration: none;
+    color: rgb(65, 61, 58);
+}
+
+.breadcrumb-item a:hover {
+    color: var(--hover);
+}
+
+/* form login */
+.form-group input[type="text"] {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-group input[type="password"] {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.register {
+    text-decoration: none;
+}
+
+/* register */
+
+.form-floating [type="text"] {
+    margin-top: 5px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-floating [type="password"] {
+    margin-top: 5px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-floating [type="email"] {
+    margin-top: 5px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.login {
+    text-decoration: none;
+}
+
+
+/* navbar */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: rgba(27, 25, 21, 0.8);
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.container .nav-item a {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar a.navbar-logo {
+    text-decoration: none;
+    color: white;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.navbar a.navbar-logo span {
+    color: var(--primary);
+}
+
+.nav-item a:hover {
+    text-decoration: none;
+    color: var(--hover);
+}
+
+
+/* sidebar */
+.sidebar {
+    background: rgb(107, 95, 85);
+}
+
+.sidebar a {
+    padding: 10px 10px;
+    display: block;
+    color : rgb(243, 226, 213);
+    text-decoration: none;
+    border-bottom: 1px solid var(--hover);
+}
+
+.sidebar a:hover {
+    background: var(--hover);
+}
+
+.active {
+    background: var(--hover);
+}
+
+
+/* footer */
+footer {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(51, 46, 36);
+    color: white;
+    bottom: 0;
+    height: 3rem;
+    width: 100%;
+}
+
+
+/* cards in dashboard */
+.card i {
+    padding: 30px;
+    font-size:35px;
+    color: white;
+}
+
+.card i.available {
+    background-color: rgb(59, 47, 32);
+}
+
+.card i.rent {
+    background-color: rgb(85, 59, 27);
+}
+
+.card i.return {
+    background-color: rgb(104, 76, 29);
+}
+
+.card i.users {
+    background-color: rgb(97, 48, 16);
+}
+
+.card i.review {
+    background-color: rgb(116, 58, 19);
+}
+
+
+/* booklist */
+.container .card.card-library {
+    height: 100%;
+    border-radius: 8px;
+    border-color: rgb(51, 46, 36);
+    background-color: var(--bg);
+}
+
+.container .card.card-library .card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container .card.card-library a {
+    text-decoration: none;
+    color: rgb(44, 41, 41);
+}
+
+.container .card.card-library a .card-title {
+    font-size: 15px;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 25vw;
+    border-radius: 8px;
+}
+
+.btn-outline-light {
+    color: var(--font);
+    border-color: var(--font);
+}
+
+/* button in rentlog */
+
+form button.return {
+    text-decoration: none;
+    color: rgb(15, 15, 15);
+    font-size: 13px;
+    background-color: none;
+}
+
+form button.return:hover {
+    color: var(--hover);
+}
+
+.card a.btn {
+    text-decoration: none;
+    color: rgb(15, 15, 15);
+    font-size: 13px;
+}
+
+.card a.btn:hover {
+    color: var(--hover);
+}
+
+/* table */
+tbody td a {
+    text-decoration: none;
+    color: rgb(65, 61, 58);
+}
+
+tbody td a:hover {
+    color: var(--hover)
+}
+
+tbody img {
+    width: 25%;
+}
+
+/* details */
+.main .container p {
+    gap: 10px;
+}
+
+.main .container a {
+    text-decoration: none;
+    color: rgb(65, 61, 58); 
+}
+
+.main .container a:hover {
+    text-decoration: none;
+    color: var(--hover); 
+}
+
+.main .container .btn-primary {
+    background-color: var(--primary);
+    border: none;
+}
+
+.main .container .btn-primary:hover {
+    color: white;
+}
