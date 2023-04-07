@@ -56,10 +56,7 @@ class LibraryController extends Controller
 
                 $list = Lists::where('user_id', Auth::id())->where('book_id', $book_id)->first();
                 $list->delete();
-                $icon = 0;
-
-                $response = array('icon' => $icon);
-                return response()->json(['status' => 'removed from read list']);
+                return response()->json(['action' => 'remove', 'message' => 'removed from read list']);
 
             } else {
                 
@@ -68,7 +65,7 @@ class LibraryController extends Controller
                 $list->book_id = $book_id;
                 $list->save();
                
-                return response()->json(['status' => 'added to read list']);
+                return response()->json(['action' => 'add', 'message' => 'added to read list']);
             }
         }
     }

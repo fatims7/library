@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -38,7 +39,6 @@ class BookController extends Controller
 
             $ext = $request->file('image')->getClientOriginalExtension();
             $new = str_replace(array('/', ':', ' '), '-', $request->title).'.'.$ext;
-            // dd($new);
             $validate['image'] = $request->file('image')->storeAs('image', $new);
         }
 
@@ -56,24 +56,40 @@ class BookController extends Controller
 
     public function update(Request $request, $code)
     {
-        // dd($request);
-        if($request->file('img')) {
-            $ext = $request->file('img')->getClientOriginalExtension();
-            $name = str_replace(array('/', ':', ' '), '-', $request->title).'.'.$ext;
-            $newimg = $request->file('img')->storeAs('image', trim($name));
-            $request['image'] = $newimg;
+        $book = Book::where('code', $code)->first();
+
+        $rules = [
+            'img' => ['image', 'file', 'max:1024'],
+            'title' => ['required', 'max:255'],
+            'author' => ['required', 'max:255'],
+            'publisher' => ['required', 'max:255'],
+            'synopsis' => ['nullable'],
+            'stock' =>['nullable']
+        ];
+
+        if($request->code != $book->code) {
+            $rules['code'] = ['required', 'max:255', 'unique:books'];
         }
 
-        // dd($request);
+        $validate = $request->validate($rules);
 
-        $book = Book::where('code', $code)->first();
-        $book->update($request->all());
+        if($request->file('image')) {
+            if($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
 
+            $ext = $request->file('image')->getClientOriginalExtension();
+            $new = str_replace(array('/', ':', ' '), '-', $request->title).'.'.$ext;
+            $validate['image'] = $request->file('image')->storeAs('image', $new);
+        }
+
+        $book = Book::where('code', $book->code)->first();
+        $book->update($validate);
 
         if($request->categories) {
             $book->categories()->sync($request->categories);
         }
-
+       
         return redirect('book');
     }
 
@@ -101,6 +117,11 @@ class BookController extends Controller
     {
         $book = Book::withTrashed()->where('code', $code)->first();
         // dd($book);
+
+        if($book->image) {
+            Storage::delete($book->image);
+        }
+
         $book->forceDelete();
         return redirect('book-deleted')->with('status', 'Buku berhasil dihapus');
     }

@@ -13,6 +13,15 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <div class="mt-2 w-50">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
       
         <form action="/book-edit/{{ $books->code }}" method="post" enctype="multipart/form-data">
             @csrf
@@ -23,8 +32,9 @@
 
             <div class="mb-3">
                 <label for="image" class="form-label" style="display: block">Image Cover</label>
+                <input type="hidden" name="oldImage" value="{{ $books->image }}">
                 <img src="{{ asset('storage/'. $books->image) }}" alt="" width="150px">
-                <input class="form-control" type="file" id="image" name="img">
+                <input class="form-control" type="file" id="image" name="image">
               </div>
             
             <div>
@@ -53,11 +63,6 @@
                 </ul>
                 <select class="form-control select-multiple" aria-label="Default select example" name="categories[]" multiple>
                     @foreach ($categories as $category)
-                        {{-- @if (old($books->category_id) == $category->id)
-                            <option value="{{ $category->id }}" selected>{{ $category->name }}</option>    
-                        @else
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endif --}}
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
